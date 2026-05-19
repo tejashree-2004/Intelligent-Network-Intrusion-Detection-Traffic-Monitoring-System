@@ -1,0 +1,84 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>NIDS Dashboard</title>
+    <link rel="stylesheet" href="./styles.css">
+  </head>
+  <body>
+    <main class="shell">
+      <header class="topbar">
+        <div>
+          <p class="eyebrow">Network Security</p>
+          <h1>Intrusion Detection Dashboard</h1>
+        </div>
+        <button id="refreshButton" type="button">Refresh</button>
+      </header>
+
+      <section class="metrics" aria-label="Traffic metrics">
+        <article>
+          <span>Active connections</span>
+          <strong id="activeConnections">0</strong>
+        </article>
+        <article>
+          <span>Packets processed</span>
+          <strong id="packetsProcessed">0</strong>
+        </article>
+        <article>
+          <span>Anomalies</span>
+          <strong id="anomalies">0</strong>
+        </article>
+        <article>
+          <span>Packets/min</span>
+          <strong id="packetRate">0</strong>
+        </article>
+      </section>
+
+      <section class="grid">
+        <article class="panel wide">
+          <div class="panelHeader">
+            <h2>Traffic trend</h2>
+            <span>Recent minute buckets</span>
+          </div>
+          <div id="trendChart" class="bars"></div>
+        </article>
+
+        <article class="panel">
+          <div class="panelHeader">
+            <h2>Protocols</h2>
+            <span>Packet share</span>
+          </div>
+          <div id="protocolList" class="stack"></div>
+        </article>
+
+        <article class="panel">
+          <div class="panelHeader">
+            <h2>Suspicious IPs</h2>
+            <span>Alert ranking</span>
+          </div>
+          <div id="suspiciousList" class="stack"></div>
+        </article>
+
+        <article class="panel wide">
+          <div class="panelHeader">
+            <h2>Alerts</h2>
+            <span>Latest detections</span>
+          </div>
+          <div id="alertsList" class="alerts"></div>
+        </article>
+
+        <article class="panel">
+          <div class="panelHeader">
+            <h2>Top sources</h2>
+            <span>By packets</span>
+          </div>
+          <div id="topSources" class="stack"></div>
+        </article>
+      </section>
+    </main>
+
+    <script src="./app.js"></script>
+  </body>
+</html>
+

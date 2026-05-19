@@ -261,7 +261,7 @@ docker compose up --build
 Services:
 
 - API: `http://localhost:3000`
-- Dashboard: `http://localhost:8080`
+- Dashboard: `http://localhost:8081`
 
 ## Testing Checklist
 
@@ -294,4 +294,3 @@ Planned improvements:
 - auto IP blocking
 - threat score generation
 - chatbot-style alert explanation
-

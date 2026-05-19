@@ -1,0 +1,14 @@
+node_modules
+backend/api/node_modules
+build
+runtime-data
+database/*.sqlite
+database/*.sqlite-*
+.git
+.venv
+venv
+__pycache__
+*.pyc
+*.exe
+*.log
+

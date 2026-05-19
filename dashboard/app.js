@@ -1,4 +1,4 @@
-const apiBase = 'http://localhost:3000';
+const apiBase = window.location.port === '5173' ? 'http://localhost:3000' : '';
 
 const numberFormat = new Intl.NumberFormat('en-US');
 
@@ -87,4 +87,3 @@ document.getElementById('refreshButton').addEventListener('click', refresh);
 refresh().catch((error) => {
   console.error(error);
 });
-

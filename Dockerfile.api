@@ -5,9 +5,9 @@ COPY backend/api/package*.json ./backend/api/
 RUN cd backend/api && npm ci --omit=dev
 
 COPY backend/api ./backend/api
+COPY dashboard ./dashboard
 COPY database ./database
 
 WORKDIR /app/backend/api
 EXPOSE 3000
-CMD ["node", "server.js"]
-
+CMD ["sh", "-c", "npm run seed && node server.js"]

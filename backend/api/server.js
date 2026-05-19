@@ -8,6 +8,7 @@ import { fileURLToPath } from 'node:url';
 const __dirname = dirname(fileURLToPath(import.meta.url));
 const databasePath = resolve(__dirname, '../../database/nids.sqlite');
 const schemaPath = resolve(__dirname, '../../database/schema.sql');
+const dashboardPath = resolve(__dirname, '../../dashboard');
 
 const db = new sqlite3.Database(databasePath);
 db.exec(readFileSync(schemaPath, 'utf8'));
@@ -15,6 +16,7 @@ db.exec(readFileSync(schemaPath, 'utf8'));
 const app = express();
 app.use(cors());
 app.use(express.json());
+app.use(express.static(dashboardPath));
 
 function get(sql, params = []) {
   return new Promise((resolveQuery, reject) => {
@@ -155,6 +157,10 @@ app.post('/api/block', async (request, response, next) => {
   } catch (error) {
     next(error);
   }
+});
+
+app.get('/', (_request, response) => {
+  response.sendFile(resolve(dashboardPath, 'index.html'));
 });
 
 app.use((error, _request, response, _next) => {

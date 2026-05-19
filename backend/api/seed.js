@@ -19,6 +19,19 @@ function run(sql, params = []) {
 
 db.exec(readFileSync(schemaPath, 'utf8'));
 
+const existing = await new Promise((resolveQuery, reject) => {
+  db.get('SELECT COUNT(*) AS count FROM TrafficFlow', [], (error, row) => {
+    if (error) reject(error);
+    else resolveQuery(row?.count ?? 0);
+  });
+});
+
+if (existing > 0) {
+  db.close();
+  console.log('Demo NIDS data already exists. Skipping seed.');
+  process.exit(0);
+}
+
 const protocols = ['TCP', 'UDP', 'ICMP'];
 const suspiciousIp = '192.168.1.50';
 
@@ -79,4 +92,3 @@ await run(
 
 db.close();
 console.log('Seeded demo NIDS data.');
-
